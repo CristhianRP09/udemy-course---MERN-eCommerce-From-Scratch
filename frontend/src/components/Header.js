@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 
 const Header = () => {
