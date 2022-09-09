@@ -3,16 +3,17 @@ import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import axios from 'axios';
+import asyncHandler from 'express-async-handler';
 
 const ProductScreen = () => {
   const params = useParams();
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProduct = asyncHandler(async () => {
       const { data } = await axios.get(`/api/products/${params.id}`);
       setProduct(data);
-    };
+    });
 
     fetchProduct();
   }, [params.id]);
