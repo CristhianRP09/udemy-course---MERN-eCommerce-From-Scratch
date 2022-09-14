@@ -1,12 +1,12 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import { producListtReducer } from './reducers/productReducers';
+import { productListReducer } from './reducers/productReducers';
 
 const middleware = [thunk];
 
 const store = configureStore({
   reducer: {
-    productReducer: producListtReducer,
+    productReducer: productListReducer,
   },
   preloadedState: {},
   middleware,
