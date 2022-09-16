@@ -4,15 +4,25 @@ import {
   productListReducer,
   productDetailsReducer,
 } from './reducers/productReducers';
+import { cartReducer } from './reducers/cartReducers';
 
 const middleware = [thunk];
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
 
 const store = configureStore({
   reducer: {
     productReducer: productListReducer,
     productDetails: productDetailsReducer,
+    cart: cartReducer,
   },
-  preloadedState: {},
+
+  preloadedState: {
+    cart: cartItemsFromStorage,
+  },
+
   middleware,
 });
 
