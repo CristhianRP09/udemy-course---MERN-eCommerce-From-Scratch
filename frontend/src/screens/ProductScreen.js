@@ -17,17 +17,17 @@ import { listProductDetails } from '../actions/productActions';
 
 const ProductScreen = () => {
   const [qty, setQty] = useState(1);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
-  const params = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listProductDetails(params.id));
-  }, [dispatch, params.id]);
+    dispatch(listProductDetails(id));
+  }, [dispatch, id]);
 
   const addToCartHandler = () => {
-    history(`/cart/${params.id}?qty=${qty}`);
+    navigate(`/cart/${id}?qty=${qty}`);
   };
 
   const productDetails = useSelector((state) => state.productDetails);
@@ -38,7 +38,7 @@ const ProductScreen = () => {
       <Link className='btn btn-dark my-3' to='/'>
         Go Back
       </Link>
-      
+
       {loading ? (
         <Loader />
       ) : error ? (
@@ -95,6 +95,7 @@ const ProductScreen = () => {
                   <ListGroup.Item>
                     <Row>
                       <Col>Quantity:</Col>
+
                       <Col>
                         <Form.Control
                           as='select'
