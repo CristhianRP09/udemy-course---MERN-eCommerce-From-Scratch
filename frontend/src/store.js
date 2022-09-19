@@ -8,8 +8,9 @@ import { cartReducer } from './reducers/cartReducers';
 
 const middleware = [thunk];
 
-const cartItemsFromStorage = localStorage.getItem('cartItems');
-const cartItems = cartItemsFromStorage ? JSON.parse(cartItemsFromStorage) : [];
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
 
 const store = configureStore({
   reducer: {
@@ -19,7 +20,9 @@ const store = configureStore({
   },
 
   preloadedState: {
-    // cart: cartItems,
+    cart: {
+      cartItems: cartItemsFromStorage,
+    },
   },
 
   middleware,
